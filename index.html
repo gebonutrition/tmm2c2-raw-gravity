@@ -868,6 +868,144 @@
         opacity: 0.72;
       }
     }
+    /* COMMUNITY SIGNUP */
+
+    .email-section.community-section {
+      padding: 64px 0;
+      background:
+        radial-gradient(
+          ellipse 65% 100% at 15% 50%,
+          rgba(247, 148, 29, 0.14),
+          transparent 75%
+        ),
+        var(--bg);
+    }
+
+    .community-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+      align-items: center;
+      gap: clamp(32px, 6vw, 80px);
+      max-width: 1200px;
+    }
+
+    .community-copy {
+      text-align: left;
+    }
+
+    .community-eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .community-copy h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 3.2vw, 44px);
+      line-height: 1.1;
+    }
+
+    .community-copy h2 span {
+      color: var(--orange);
+    }
+
+    .community-description {
+      max-width: 540px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .community-form-wrap {
+      min-width: 0;
+    }
+
+    .community-form-wrap .email-form {
+      display: flex;
+      width: 100%;
+      max-width: none;
+      gap: 10px;
+      margin: 0;
+    }
+
+    .community-form-wrap .email-form input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid #444;
+      border-radius: 999px;
+      background: #141414;
+      padding: 16px 20px;
+    }
+
+    .community-form-wrap .email-form button {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #1A1A1A;
+      padding: 16px 22px;
+      box-shadow: none;
+      font-weight: 900;
+    }
+
+    .community-form-wrap .email-form button:hover {
+      filter: brightness(1.08);
+    }
+
+    .community-form-wrap .email-form button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .community-form-wrap .fine {
+      margin-top: 14px;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .community-form-wrap .success {
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .community-form-wrap .error {
+      margin: 12px 0 0;
+      text-align: left;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+      .email-section.community-section {
+        padding: 44px 0;
+      }
+
+      .community-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .community-copy h2 {
+        font-size: 30px;
+      }
+
+      .community-description {
+        font-size: 14px;
+      }
+
+      .community-form-wrap .email-form {
+        flex-direction: column;
+      }
+
+      .community-form-wrap .email-form input,
+      .community-form-wrap .email-form button {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -1120,37 +1258,69 @@
       </div>
     </section>
 
-    <section class="email-section" id="fan-price-form-section">
-      <div class="wrap email-box">
-        <div class="email-icon">📬</div>
-        <h2>Your fan price is waiting<br>get the raw coffee with -25% off</h2>
+    <section class="email-section community-section" id="fan-price-form-section">
+      <div class="wrap community-inner">
 
-        <div class="stock-bar" style="max-width:320px;margin:0 auto 18px">
-          <div class="stock-fill"></div>
-          <span>247 / 500</span>
+        <div class="community-copy">
+          <p class="community-eyebrow">RAW GRAVITY COMMUNITY</p>
+
+          <h2>
+            Join the <span>RAW GRAVITY</span> community
+          </h2>
+
+          <p class="community-description">
+            Get first access to launches, discounts, promos, and community updates.
+            Be part of the Raw Gravity community.
+          </p>
         </div>
 
-        <form
-          class="email-form"
-          id="fan-price-email-form"
-          method="post"
-          action="/api/subscribe"
-        >
-          <input
-            id="fan-price-email"
-            type="email"
-            name="email"
-            required
-            autocomplete="email"
-            placeholder="you@example.com"
-            aria-label="Email"
-          >
-          <button id="fan-price-email-submit" type="submit">Get my code</button>
-        </form>
+        <div class="community-form-wrap">
 
-        <div class="success" id="success-state">Code sent! Check your inbox 🎉</div>
-        <div class="error" id="error-state">Something went wrong. Please try again.</div>
-        <div class="fine">By submitting you agree to receive emails from Raw Gravity. Unsubscribe anytime.</div>
+          <form
+            class="email-form"
+            id="fan-price-email-form"
+            method="post"
+            action="/api/subscribe"
+          >
+            <input
+              id="fan-price-email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="you@example.com"
+              aria-label="Email address"
+            >
+
+            <button id="fan-price-email-submit" type="submit">
+              Join the community
+            </button>
+          </form>
+
+          <div
+            class="success"
+            id="success-state"
+            role="status"
+            aria-live="polite"
+          >
+            You're in! Welcome to the Raw Gravity community.
+          </div>
+
+          <div
+            class="error"
+            id="error-state"
+            role="alert"
+          >
+            Something went wrong. Please try again.
+          </div>
+
+          <div class="fine">
+            By subscribing, you agree to receive emails from Raw Gravity.
+            Unsubscribe anytime.
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -1187,91 +1357,87 @@
   </main>
 
   <script>
-    const LANDING_NAME = "tmm2";
+  const LANDING_NAME = "tmm2c2";
 
-    const AMAZON_URLS = {
-      tiktok: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_3383CD7D3C5EF97F6CCA7D1718E879D6_afap_abs&ref_=aa_maas&tag=maas",
-      meta: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_E46438738C584A5A7808A36BE63B2723_afap_abs&ref_=aa_maas&tag=maas",
-      google: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_8A567DA40D5364D338FB21A1EF04734E_afap_abs&ref_=aa_maas&tag=maas",
-      dv360: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_9986EB1E2475865D64AA28A04713BA29_afap_abs&ref_=aa_maas&tag=maas",
-      youtube: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_9D2E5EAFE36AC7966B2405FF99644329_afap_abs&ref_=aa_maas&tag=maas"
-    };
+  const form = document.getElementById("fan-price-email-form");
+  const emailInput = document.getElementById("fan-price-email");
+  const submitButton = document.getElementById("fan-price-email-submit");
+  const successState = document.getElementById("success-state");
+  const errorState = document.getElementById("error-state");
 
-    const DEFAULT_AMAZON_URL = "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_A901C78DB711B9CD58AF45E1149F65C6_afap_abs&ref_=aa_maas&tag=maas";
-    const form = document.getElementById("fan-price-email-form");
-    const emailInput = document.getElementById("fan-price-email");
-    const submitButton = document.getElementById("fan-price-email-submit");
-    const successState = document.getElementById("success-state");
-    const errorState = document.getElementById("error-state");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    const email = emailInput.value.trim();
 
-      const email = emailInput.value.trim();
-      if (!email) return;
+    if (!email) {
+      return;
+    }
 
-      const params = new URLSearchParams(window.location.search);
-      const sourceRaw = (params.get("source") || "meta").toLowerCase();
-      const source = ["tiktok","meta","google","youtube","dv360"].includes(sourceRaw)
+    const params = new URLSearchParams(window.location.search);
+
+    const sourceRaw = (params.get("source") || "unknown")
+      .trim()
+      .toLowerCase();
+
+    const allowedSources = [
+      "tiktok",
+      "meta",
+      "google",
+      "youtube",
+      "dv360"
+    ];
+
+    const source = allowedSources.includes(sourceRaw)
       ? sourceRaw
       : "unknown";
-      const creative = params.get("creative") || "unknown";
 
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-      errorState.style.display = "none";
+    const creative = params.get("creative") || "unknown";
 
-      try {
-        const response = await fetch("/api/subscribe", {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify({
-            email,
-            landing: LANDING_NAME,
-            source,
-            creative
-          })
-        });
+    submitButton.disabled = true;
+    submitButton.textContent = "Joining...";
+    errorState.style.display = "none";
 
-        const result = await response.json();
-
-        if (!response.ok || !result.success) {
-          throw new Error(result.error || "Subscription failed");
-        }
-
-        form.style.display = "none";
-        successState.style.display = "block";
-        
-        if (typeof window.rawGravityTrackTikTokLead === "function") {
-          window.rawGravityTrackTikTokLead();
-        }
-        if (typeof window.rawGravityTrackMetaLead === "function") {
-          window.rawGravityTrackMetaLead();
-        }
-
-        const amazonUrl = result.amazonUrl || AMAZON_URLS[source] || DEFAULT_AMAZON_URL;
-
-        setTimeout(() => {
-          window.location.href = amazonUrl;
-        }, 2000);
-      } catch (error) {
-        console.error("TMM2 Klaviyo submission error:", error);
-        submitButton.disabled = false;
-        submitButton.textContent = "Get the 25% code";
-        errorState.style.display = "block";
-      }
-    });
-
-    document.querySelectorAll('a[href="#fan-price-form-section"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const target = document.getElementById("fan-price-form-section");
-        if (target) {
-          event.preventDefault();
-          target.scrollIntoView({behavior:"smooth", block:"center"});
-          setTimeout(() => emailInput.focus(), 500);
-        }
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          landing: LANDING_NAME,
+          source,
+          creative
+        })
       });
-    });
-  </script>
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Subscription failed");
+      }
+
+      form.style.display = "none";
+      successState.style.display = "block";
+
+      if (typeof window.rawGravityTrackTikTokLead === "function") {
+        window.rawGravityTrackTikTokLead();
+      }
+
+      if (typeof window.rawGravityTrackMetaLead === "function") {
+        window.rawGravityTrackMetaLead();
+      }
+
+    } catch (error) {
+      console.error("Raw Gravity community signup error:", error);
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Join the community";
+
+      errorState.style.display = "block";
+    }
+  });
+</script>
 </body>
 </html>
