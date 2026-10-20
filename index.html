@@ -47,24 +47,64 @@
 
     .wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
 
-    .marquee{
-      background:var(--orange);
-      color:#1A1A1A;
-      overflow:hidden;
-      white-space:nowrap;
-      border-bottom:3px solid #000;
-      padding:9px 0;
-      font-weight:800;
-      font-size:14px;
-      letter-spacing:.45px
+    /* INFINITE MARQUEE */
+    .marquee {
+      background: var(--orange);
+      color: #1A1A1A;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid #000;
+      padding: 9px 0;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.45px;
     }
-    .marquee-track{
-      display:inline-block;
-      min-width:max-content;
-      animation:marquee 18s linear infinite
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 26s linear infinite;
+      will-change: transform;
     }
-    .marquee-track span{display:inline-block;margin:0 24px}
-    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .marquee-group {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+
+    .marquee-group span {
+      display: block;
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 0 24px;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .marquee {
+        padding: 8px 0;
+        font-size: 11px;
+      }
+
+      .marquee-track {
+        animation-duration: 18s;
+      }
+
+      .marquee-group span {
+        padding: 0 16px;
+      }
+    }
 
     .hero{
       position:relative;
@@ -701,12 +741,43 @@
 
   <header class="marquee">
     <div class="marquee-track">
-      <span>LIMITED COLLAB EDITION</span>
-      <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-      <span>LIMITED COLLAB EDITION</span>
-      <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-      <span>LIMITED COLLAB EDITION</span>
-      <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+
+      <div class="marquee-group">
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+      </div>
+
+      <div class="marquee-group" aria-hidden="true">
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+      </div>
+
+      <div class="marquee-group" aria-hidden="true">
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+      </div>
+
+      <div class="marquee-group" aria-hidden="true">
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+        <span>LIMITED COLLAB EDITION</span>
+        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
+      </div>
+
     </div>
   </header>
 
