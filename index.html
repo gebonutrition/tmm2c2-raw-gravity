@@ -1105,6 +1105,353 @@
         font-size: 12px;
       }
     }
+    /* =========================================
+      MOBILE HERO — TARGET LAYOUT
+      ========================================= */
+
+    /* Hero top row */
+
+    .hero-topbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-topbar .badge {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .hero-mini-cta {
+      flex: 0 0 auto;
+      align-items: stretch;
+    }
+
+    .hero-mini-cta .amazon,
+    .hero-mini-cta .offer {
+      padding: 10px 12px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    /* Price card desktop layout */
+
+    .hero .price-card {
+      display: block;
+      width: min(420px, 100%);
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .hero .price-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 16px 20px;
+
+      background: var(--panel-2);
+      border: 3px solid var(--orange);
+      border-radius: 12px;
+      box-shadow: 5px 5px 0 #000;
+    }
+
+    .hero .price-card .stock {
+      width: min(420px, 100%);
+      margin-top: 18px;
+    }
+
+    .hero .price-card .stock-label {
+      color: #1A1A1A;
+    }
+
+    .hero .price-card .stock-bar {
+      width: 100%;
+    }
+
+    /* Mobile layout */
+
+    @media (max-width: 768px) {
+
+      .hero,
+      .hero-inner {
+        min-height: 630px;
+      }
+
+      .hero {
+        overflow: hidden;
+      }
+
+      .hero .wrap {
+        width: calc(100% - 56px);
+      }
+
+      .hero-inner {
+        padding: 35px 0 34px;
+        align-items: flex-start;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 0;
+      }
+
+      /* Badge + small Amazon button */
+
+      .hero-topbar {
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: nowrap;
+      }
+
+      .hero-topbar .badge {
+        padding: 7px 9px;
+        font-size: 10px;
+        letter-spacing: 0.6px;
+      }
+
+      .hero-mini-cta {
+        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+      }
+
+      .hero-mini-cta .amazon,
+      .hero-mini-cta .offer {
+        padding: 8px 9px;
+        font-size: 10px;
+      }
+
+      /* Heading */
+
+      .hero h1 {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: 350px;
+        margin: 0;
+
+        font-size: clamp(31px, 8.2vw, 35px);
+        line-height: 1;
+        letter-spacing: -0.35px;
+      }
+
+      .hero h1 .x {
+        margin-right: 2px;
+      }
+
+      .desktop-hero-break {
+        display: none;
+      }
+
+      /* Product image on the right */
+
+      .hero-product {
+        position: absolute;
+
+        top: 220px;
+        right: 0;
+        bottom: auto;
+
+        width: 180px;
+        max-width: none;
+        max-height: none;
+        height: auto;
+
+        transform: none;
+
+        z-index: 1;
+        opacity: 1;
+
+        object-fit: contain;
+        pointer-events: none;
+      }
+
+      .hero-shade {
+        z-index: 0;
+      }
+
+      /* Benefit list */
+
+      .hero .hero-points {
+        position: relative;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        width: 225px;
+        max-width: 100%;
+
+        margin: 14px 0 18px;
+      }
+
+      .hero .hero-point {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+      .hero .hero-point i {
+        flex: 0 0 22px;
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+      }
+
+      /* Fan price card */
+
+      .hero .price-card {
+        position: relative;
+        z-index: 3;
+
+        display: block;
+
+        width: 200px;
+        max-width: 100%;
+
+        padding: 0;
+
+        background: var(--panel-2);
+        border: 3px solid var(--orange);
+        border-radius: 12px;
+
+        box-shadow: 4px 5px 0 #000;
+      }
+
+      .hero .price-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        padding: 10px 11px;
+
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .hero .price-label {
+        flex: 1;
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .hero .discount {
+        flex: 0 0 auto;
+
+        padding: 6px 9px;
+        margin: 0;
+
+        font-size: 15px;
+        white-space: nowrap;
+      }
+
+      /* Stock indicator inside the card */
+
+      .hero .price-card .stock {
+        width: auto;
+        max-width: none;
+        margin: 0;
+
+        padding: 10px 11px 11px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .hero .price-card .stock-label {
+        max-width: 170px;
+        margin: 0 0 8px;
+
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.3;
+      }
+
+      .hero .price-card .stock-bar {
+        width: 100%;
+        height: 20px;
+      }
+
+      .hero .price-card .stock-bar span {
+        font-size: 10px;
+      }
+
+      /* Main Amazon button */
+
+      .hero-cta {
+        position: relative;
+        z-index: 3;
+
+        margin-top: 18px;
+      }
+
+      .hero-cta .amazon-btn {
+        display: inline-flex;
+        max-width: 100%;
+      }
+
+      .hero-cta .amazon-btn .amazon,
+      .hero-cta .amazon-btn .offer {
+        padding: 13px 16px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+    }
+
+    /* Small mobile screens */
+
+    @media (max-width: 390px) {
+
+      .hero,
+      .hero-inner {
+        min-height: 630px;
+      }
+
+      .hero .wrap {
+        width: calc(100% - 40px);
+      }
+
+      .hero-topbar {
+        gap: 6px;
+      }
+
+      .hero-topbar .badge {
+        padding: 7px 7px;
+        font-size: 9px;
+      }
+
+      .hero-mini-cta .amazon,
+      .hero-mini-cta .offer {
+        padding: 8px 7px;
+        font-size: 9px;
+      }
+
+      .hero-product {
+        top: 220px;
+        right: 0;
+        width: 160px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero .price-card {
+        width: 200px;
+      }
+    }
   </style>
 </head>
 
@@ -1158,7 +1505,6 @@
 
   <main>
     <section class="hero" id="top">
-      <section class="hero" id="top">
 
       <div class="hero-shade" aria-hidden="true"></div>
 
@@ -1171,7 +1517,22 @@
 
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <div class="badge">EXCLUSIVE EDITION</div>
+
+          <div class="hero-topbar">
+
+            <div class="badge">EXCLUSIVE EDITION</div>
+
+            <a
+              class="amazon-btn hero-mini-cta"
+              href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_F4C7C5F67E362A895EFCE264B192DFE0_afap_abs&amp;ref_=aa_maas&amp;tag=maas"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="amazon">amazon</span>
+              <span class="offer">Try Raw Coffee+</span>
+            </a>
+
+          </div>
 
           <h1>
             <span class="hero-line-1">Take My Muffin</span><br class="desktop-hero-break">
@@ -1181,22 +1542,40 @@
           </h1>
 
           <div class="hero-points">
-            <div class="hero-point"><i>⭐</i>Limited edition packaging</div>
-            <div class="hero-point"><i>❤️</i>Built for the fans who never log off</div>
-            <div class="hero-point"><i>⚡</i>Get it before the restock</div>
+            <div class="hero-point">
+              <i>⭐</i>
+              <span>Limited edition packaging</span>
+            </div>
+
+            <div class="hero-point">
+              <i>❤️</i>
+              <span>Built for the fans who never log off</span>
+            </div>
+
+            <div class="hero-point">
+              <i>⚡</i>
+              <span>Get it before the restock</span>
+            </div>
           </div>
 
           <div class="price-card">
-            <div class="price-label">FAN PRICE</div>
-            <div class="discount">-25% OFF</div>
-          </div>
 
-          <div class="stock">
-            <div class="stock-label">First 500 orders get the fan price</div>
-            <div class="stock-bar">
-              <div class="stock-fill"></div>
-              <span><b>247</b> <em>/ 500</em></span>
+            <div class="price-card-top">
+              <div class="price-label">FAN PRICE</div>
+              <div class="discount">-25% OFF</div>
             </div>
+
+            <div class="stock">
+              <div class="stock-label">
+                First 500 orders get the fan price
+              </div>
+
+              <div class="stock-bar">
+                <div class="stock-fill"></div>
+                <span><b>247</b> <em>/ 500</em></span>
+              </div>
+            </div>
+
           </div>
 
           <div class="hero-cta">
@@ -1211,8 +1590,10 @@
               <span class="offer">Try Raw Coffee+</span>
             </a>
           </div>
+
         </div>
       </div>
+
     </section>
 
     <section class="section-panel">
