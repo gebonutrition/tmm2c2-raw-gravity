@@ -1460,6 +1460,55 @@
         width: 200px;
       }
     }
+    /* HERO TITLE — MOBILE LINE BREAKS */
+
+    /* Desktop: preserve original title layout */
+    .hero-x-mobile {
+      display: none;
+    }
+
+    .hero-x-desktop {
+      display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+
+      /* First line: TAKE MY MUFFIN X */
+      .hero-line-1 {
+        display: block;
+      }
+
+      /* Second line: RAW GRAVITY */
+      .hero-line-2 {
+        display: block;
+      }
+
+      /* Third line: PRESENTS RAW COFFEE+ */
+      .hero-line-3,
+      .hero-line-4 {
+        display: inline;
+      }
+
+      /* Remove unnecessary generated spaces after block lines */
+      .hero-line-1::after,
+      .hero-line-2::after {
+        content: none;
+      }
+
+      /* Keep a space between PRESENTS and RAW COFFEE+ */
+      .hero-line-3::after {
+        content: " ";
+      }
+
+      /* Move X to the first line on mobile */
+      .hero-x-mobile {
+        display: inline-block;
+      }
+
+      .hero-x-desktop {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -1543,9 +1592,16 @@
           </div>
 
           <h1>
-            <span class="hero-line-1">Take My Muffin</span><br class="desktop-hero-break">
-            <span class="hero-line-2"><span class="x">x</span> Raw Gravity</span><br class="desktop-hero-break">
+            <span class="hero-line-1">
+              Take My Muffin <span class="x hero-x-mobile">x</span>
+            </span><br class="desktop-hero-break">
+
+            <span class="hero-line-2">
+              <span class="x hero-x-desktop">x</span> Raw Gravity
+            </span><br class="desktop-hero-break">
+
             <span class="hero-line-3">presents</span><br class="desktop-hero-break">
+
             <span class="hero-line-4">raw coffee+</span>
           </h1>
 
