@@ -756,7 +756,7 @@
     /* Product image */
     .hero-product {
       position: absolute;
-      display: block;
+      display: none;
       z-index: 1;
 
       top: 50%;
@@ -828,6 +828,7 @@
       }
 
       .hero-product {
+        display: block;
         top: 98px;
         right: 0;
         bottom: auto;
@@ -1562,7 +1563,7 @@
 
   <main>
     <section class="hero" id="top">
-
+      <div class="hero-art hero-art-desktop" aria-hidden="true"></div>
       <div class="hero-shade" aria-hidden="true"></div>
 
       <img
