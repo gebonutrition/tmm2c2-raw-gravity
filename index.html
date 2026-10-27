@@ -22,7 +22,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lilita+One&family=Manrope:wght@400;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -47,64 +47,24 @@
 
     .wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}
 
-    /* INFINITE MARQUEE */
-    .marquee {
-      background: var(--orange);
-      color: #1A1A1A;
-      overflow: hidden;
-      white-space: nowrap;
-      border-bottom: 3px solid #000;
-      padding: 9px 0;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.45px;
+    .marquee{
+      background:var(--orange);
+      color:#1A1A1A;
+      overflow:hidden;
+      white-space:nowrap;
+      border-bottom:3px solid #000;
+      padding:9px 0;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:.45px
     }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee-scroll 39s linear infinite;
-      will-change: transform;
+    .marquee-track{
+      display:inline-block;
+      min-width:max-content;
+      animation:marquee 18s linear infinite
     }
-
-    .marquee-group {
-      display: flex;
-      flex: 0 0 auto;
-      align-items: center;
-    }
-
-    .marquee-group span {
-      display: block;
-      flex: 0 0 auto;
-      margin: 0;
-      padding: 0 24px;
-      white-space: nowrap;
-    }
-
-    @keyframes marquee-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .marquee {
-        padding: 8px 0;
-        font-size: 11px;
-      }
-
-      .marquee-track {
-        animation-duration: 27s;
-      }
-
-      .marquee-group span {
-        padding: 0 16px;
-      }
-    }
+    .marquee-track span{display:inline-block;margin:0 24px}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
     .hero{
       position:relative;
@@ -426,7 +386,7 @@
       .wrap{width:calc(100% - 32px)}
 
       .marquee{padding:8px 0;font-size:12px}
-      .marquee-track{animation-duration:26s}
+      .marquee-track{animation-duration:14s}
       .marquee-track span{margin:0 18px}
 
       /* MOBILE HERO */
@@ -730,784 +690,1255 @@
       }
     }
     }
-    /* HERO LAYOUT FIX */
+    /* TMM LANDING V2 — MARQUEE */
+    .marquee {
+      background: #1A1A1A;
+      color: #fff;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      padding: 10px 0;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+    }
 
-    .hero {
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      min-width: 0;
+      animation: marquee 20s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .marquee-track span {
+      display: inline-block;
+      flex: 0 0 auto;
+      margin: 0 22px;
+      background: linear-gradient(90deg,#3DDC5A,#2FB4FF,#7B4DFF,#D14DFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes btnglow {
+      0%,100% {
+        box-shadow:
+          0 0 0 1px #000,
+          0 0 7px 1px rgba(255,255,255,.8),
+          0 0 16px 2px rgba(255,255,255,.45);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1px #000,
+          0 0 12px 3px rgba(255,255,255,1),
+          0 0 25px 6px rgba(255,255,255,.6);
+      }
+    }
+    /* TMM LANDING V2 — HERO */
+    .tmm-v2-hero {
       position: relative;
       min-height: 760px;
-      isolation: isolate;
+      overflow: hidden;
+      background: linear-gradient(
+        90deg,
+        #EF7402 0%,
+        #EF7402 25%,
+        #FCA328 100%
+      );
+      border-bottom: 4px solid #111;
+    }
+
+    .tmm-v2-hero__art {
+      position: absolute;
+      right: max(0px, calc((100vw - 1460px) / 2));
+      top: 50%;
+      width: min(61.56vw, 1180px);
+      aspect-ratio: 1397 / 1126;
+      transform: translateY(-50%);
+      background: url("./assets/hero-bg-final.png") center / cover no-repeat;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+      );
+    }
+
+    .tmm-v2-hero__inner {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 48px 40px;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1.15fr);
+      gap: 32px;
+      align-items: center;
+      min-height: calc(100vh - 36px);
+    }
+
+    .tmm-v2-hero__copy {
+      width: 100%;
+      max-width: 540px;
+      position: relative;
+      z-index: 2;
+      transform: translateY(24px);
+    }
+
+    .tmm-v2-hero__title {
+      margin: 0;
+      max-width: 540px;
+      font-family: 'Lilita One', Arial, sans-serif;
+      font-weight: 400;
+      font-size: clamp(40px, 4.6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #fff;
+      -webkit-text-stroke: 7px #1A1A1A;
+      paint-order: stroke fill;
+      text-shadow: 0 5px 0 #1A1A1A, 0 12px 26px rgba(0,0,0,.25);
+    }
+
+    .tmm-v2-hero__x {
+      color: #1A1A1A;
+      font-size: .67em;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+      margin-right: 10px;
+    }
+
+    .tmm-v2-hero__presents {
+      display: inline-block;
+      font-family: 'Manrope', Arial, sans-serif;
+      font-weight: 800;
+      font-size: .5em;
+      letter-spacing: 2px;
+      line-height: 1.5;
+      color: #1A1A1A;
+      -webkit-text-stroke: 1px #1A1A1A;
+      text-shadow: none;
+    }
+
+    .tmm-v2-hero__coffee {
+      white-space: nowrap;
+    }
+
+    .tmm-v2-hero__sticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin: 22px 0 0 15px;
+      padding: 7px 14px 8px;
+      transform: rotate(-6deg);
+      transform-origin: left center;
+      background: #7A1424;
+      color: #fff;
+      border-radius: 9px;
+      box-shadow: 0 4px 0 #1A1A1A;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 28px;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tmm-v2-hero__sticker span {
+      font-family: 'Manrope', Arial, sans-serif;
+      font-weight: 800;
+      font-size: .62em;
+      letter-spacing: 1px;
+      color: #F5C2CB;
+    }
+
+    .tmm-v2-hero__offer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 460px;
+      margin-top: 40px;
+      color: #1A1A1A;
+    }
+
+    .tmm-v2-hero__stock-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tmm-v2-hero__stock-label span {
+      min-width: 0;
+    }
+
+    .tmm-v2-hero__stock-label strong {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tmm-v2-hero__stock-label small {
+      opacity: .55;
+      font-size: inherit;
+    }
+
+    .tmm-v2-hero__stock-bar {
+      background: #1A1A1A;
+      border-radius: 999px;
+      height: 10px;
+      padding: 2px;
+      box-sizing: content-box;
       overflow: hidden;
     }
 
-    .hero-shade {
+    .tmm-v2-hero__stock-fill {
+      width: 49.4%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg,#3DDC5A,#2FB4FF,#7B4DFF,#D14DFF);
+    }
+
+    .tmm-v2-buy-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 20px 14px;
+      margin-top: 6px;
+      background: #6B2FA3;
+      border: 2px solid #fff;
+      border-radius: 16px;
+      color: #fff;
+      text-decoration: none;
+      animation: btnglow 2s ease-in-out infinite;
+      transition: transform .15s ease;
+      cursor: pointer;
+    }
+
+    .tmm-v2-buy-btn:hover {
+      color: #fff;
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .tmm-v2-buy-btn__label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      letter-spacing: .6px;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .tmm-v2-buy-btn__logo {
+      position: relative;
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      letter-spacing: -1.5px;
+      color: #fff;
+      line-height: 1;
+      padding-bottom: 8px;
+    }
+
+    .tmm-v2-buy-btn__logo i {
+      position: absolute;
+      left: 10%;
+      right: 14%;
+      bottom: 0;
+      height: .24em;
+      border-bottom: .1em solid #FF9900;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    }
+
+    .tmm-v2-hero__trust {
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 12px;
+      margin-top: 16px;
+      max-width: 460px;
+    }
+
+    .tmm-v2-hero__trust-item {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      color: #1A1A1A;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .tmm-v2-hero__trust-icon {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+    }
+    @media (max-width: 768px) {
+      .marquee {
+        padding: 8px 0;
+        font-size: 11px;
+      }
+
+      .marquee-track {
+        animation-duration: 20s;
+      }
+
+      .marquee-track span {
+        margin: 0 18px;
+      }
+
+      .tmm-v2-hero {
+        min-height: 0;
+      }
+
+      .tmm-v2-hero__art {
+        right: -45px;
+        top: 24%;
+        width: min(135vw, 600px);
+        transform: none;
+        background-position: right top;
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          transparent 0%,
+          #000 20%,
+          #000 82%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          180deg,
+          transparent 0%,
+          #000 20%,
+          #000 82%,
+          transparent 100%
+        );
+      }
+
+      .tmm-v2-hero__inner {
+        display: flex;
+        width: 100%;
+        min-height: max(640px, calc(100svh - 132px));
+        padding: 18px 20px 22px;
+        gap: 0;
+      }
+
+      .tmm-v2-hero__copy {
+        max-width: none;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        transform: none;
+      }
+
+      .tmm-v2-hero__title {
+        max-width: 380px;
+        font-size: clamp(28px, 7.8vw, 36px);
+        line-height: 1.05;
+        letter-spacing: .5px;
+        -webkit-text-stroke: 5px #1A1A1A;
+      }
+
+      .tmm-v2-hero__presents {
+        font-size: .55em;
+        letter-spacing: 1.5px;
+      }
+
+      .tmm-v2-hero__sticker {
+        margin-top: 14px;
+        margin-left: 12px;
+        padding: 5px 10px 6px;
+        gap: 8px;
+        font-size: clamp(17px, 4.5vw, 22px);
+      }
+
+      .tmm-v2-hero__offer {
+        margin-top: auto;
+        padding-top: 24px;
+        gap: 9px;
+      }
+
+      .tmm-v2-hero__stock-label {
+        font-size: 11px;
+        gap: 8px;
+      }
+
+      .tmm-v2-hero__stock-label span {
+        max-width: 250px;
+      }
+
+      .tmm-v2-hero__stock-bar {
+        height: 8px;
+      }
+
+      .tmm-v2-buy-btn {
+        border-radius: 14px;
+        padding: 8px 16px 10px;
+      }
+
+      .tmm-v2-buy-btn__label {
+        font-size: 11px;
+      }
+
+      .tmm-v2-buy-btn__logo {
+        font-size: clamp(24px, 7vw, 30px);
+        padding-bottom: 6px;
+      }
+
+      .tmm-v2-hero__trust {
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .tmm-v2-hero__trust-item {
+        font-size: 10px;
+      }
+
+      .tmm-v2-hero__trust-icon {
+        font-size: 22px;
+        height: 24px;
+      }
+    }
+    /* TMM V2 — MID CTA */
+    .tmm-v2-mid-cta {
+      background: linear-gradient(90deg,#F7941D,#FF5A1F);
+      color: #1A1A1A;
+      padding: 32px 0;
+      border-bottom: 4px solid #000;
+    }
+
+    .tmm-v2-mid-inner {
+      max-width: 1120px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .tmm-v2-mid-copy {
+      flex: 1 1 320px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tmm-v2-mid-copy strong {
+      display: block;
+      font-family: Anton, Arial, sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      font-weight: 400;
+    }
+
+    .tmm-v2-mid-copy p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tmm-v2-stock-bar {
+      max-width: 340px;
+      width: 100%;
+      height: 26px;
+      position: relative;
+      overflow: hidden;
+      background: #1A1A1A;
+      border-radius: 999px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.6), 0 6px 16px rgba(0,0,0,.15);
+    }
+
+    .tmm-v2-stock-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 49.4%;
+      border-radius: 999px;
+      background: linear-gradient(90deg,#FFE066,#FF5A1F);
+    }
+
+    .tmm-v2-stock-bar span {
       position: absolute;
       inset: 0;
-      z-index: 0;
-      background: linear-gradient(
-        90deg,
-        #FDB94A 0%,
-        rgba(253, 185, 74, 0.98) 34%,
-        rgba(253, 185, 74, 0.65) 52%,
-        rgba(253, 185, 74, 0) 76%
-      );
-      pointer-events: none;
-    }
-
-    /* Product image */
-    .hero-product {
-      position: absolute;
-      display: none;
-      z-index: 1;
-
-      top: 50%;
-      right: clamp(24px, calc(50vw - 616px), 408px);
-
-      transform: translateY(-50%);
-
-      width: min(38vw, 520px);
-      height: auto;
-      max-height: calc(100% - 56px);
-
-      object-fit: contain;
-      object-position: center;
-
-      filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.18));
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-
-      min-height: 760px;
-      padding: 64px 0 66px;
-    }
-
-    .hero-copy {
-      width: min(540px, 48%);
-      padding-top: 4px;
-    }
-
-    .hero h1 {
-      max-width: 500px;
-      font-size: clamp(40px, 5.3vw, 68px);
-      line-height: 1.02;
-    }
-
-    /* Tablet */
-    @media (min-width: 769px) and (max-width: 1100px) {
-      .hero,
-      .hero-inner {
-        min-height: 700px;
-      }
-
-      .hero-product {
-        width: min(37vw, 390px);
-        right: 16px;
-        max-height: calc(100% - 40px);
-      }
-
-      .hero-copy {
-        width: min(480px, 52%);
-      }
-
-      .hero h1 {
-        font-size: clamp(38px, 4.8vw, 54px);
-      }
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .hero {
-        min-height: 0;
-      }
-
-      .hero-inner {
-        min-height: 0;
-        padding: 28px 0 34px;
-      }
-
-      .hero-product {
-        display: block;
-        top: 98px;
-        right: 0;
-        bottom: auto;
-
-        transform: none;
-
-        width: min(44vw, 195px);
-        max-height: none;
-
-        opacity: 0.84;
-      }
-
-      .hero-copy {
-        width: 100%;
-        padding-top: 0;
-      }
-
-      .hero h1 {
-        max-width: 100%;
-        font-size: clamp(30px, 7.2vw, 36px);
-        line-height: 1.02;
-      }
-
-      .hero-points {
-        max-width: min(100%, 320px);
-      }
-
-      .price-card,
-      .stock {
-        width: min(100%, 320px);
-      }
-    }
-
-    @media (max-width: 390px) {
-      .hero-product {
-        top: 116px;
-        width: 154px;
-        opacity: 0.72;
-      }
-    }
-    /* COMMUNITY SIGNUP */
-
-    .email-section.community-section {
-      padding: 64px 0;
-      background:
-        radial-gradient(
-          ellipse 65% 100% at 15% 50%,
-          rgba(247, 148, 29, 0.14),
-          transparent 75%
-        ),
-        var(--bg);
-    }
-
-    .community-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
-      align-items: center;
-      gap: clamp(32px, 6vw, 80px);
-      max-width: 1200px;
-    }
-
-    .community-copy {
-      text-align: left;
-    }
-
-    .community-eyebrow {
-      margin: 0 0 12px;
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .community-copy h2 {
-      margin: 0 0 14px;
-      font-size: clamp(30px, 3.2vw, 44px);
-      line-height: 1.1;
-    }
-
-    .community-copy h2 span {
-      color: var(--orange);
-    }
-
-    .community-description {
-      max-width: 540px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .community-form-wrap {
-      min-width: 0;
-    }
-
-    .community-form-wrap .email-form {
       display: flex;
-      width: 100%;
-      max-width: none;
-      gap: 10px;
-      margin: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 800;
     }
 
-    .community-form-wrap .email-form input {
-      flex: 1;
-      min-width: 0;
-      border: 1px solid #444;
-      border-radius: 999px;
-      background: #141414;
-      padding: 16px 20px;
+    .tmm-v2-stock-bar b {
+      color: #fff;
     }
 
-    .community-form-wrap .email-form button {
+    .tmm-v2-stock-bar em {
+      color: #999;
+      font-style: normal;
+    }
+
+    .tmm-v2-buy-btn--inline {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       flex: 0 0 auto;
-      border: 0;
-      border-radius: 999px;
-      background: var(--orange);
-      color: #1A1A1A;
-      padding: 16px 22px;
-      box-shadow: none;
-      font-weight: 900;
-    }
-
-    .community-form-wrap .email-form button:hover {
-      filter: brightness(1.08);
-    }
-
-    .community-form-wrap .email-form button:disabled {
-      opacity: 0.65;
-      cursor: wait;
-    }
-
-    .community-form-wrap .fine {
-      margin-top: 14px;
-      text-align: left;
-      line-height: 1.5;
-    }
-
-    .community-form-wrap .success {
-      margin-top: 14px;
-      text-align: left;
-    }
-
-    .community-form-wrap .error {
-      margin: 12px 0 0;
-      text-align: left;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 768px) {
-      .email-section.community-section {
-        padding: 44px 0;
-      }
-
-      .community-inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-      }
-
-      .community-copy h2 {
-        font-size: 30px;
-      }
-
-      .community-description {
-        font-size: 14px;
-      }
-
-      .community-form-wrap .email-form {
-        flex-direction: column;
-      }
-
-      .community-form-wrap .email-form input,
-      .community-form-wrap .email-form button {
-        width: 100%;
-      }
-    }
-    /* FAN PRICE AMAZON CTA */
-
-    .fan-price-section {
-      min-height: 420px;
-      padding: 64px 0 72px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-
-      background:
-        radial-gradient(
-          ellipse 55% 85% at 50% 40%,
-          rgba(247, 148, 29, 0.13),
-          transparent 75%
-        ),
-        var(--bg);
-    }
-
-    .fan-price-inner {
-      width: min(680px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .fan-price-icon {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 22px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1px solid rgba(247, 148, 29, 0.45);
-      border-radius: 50%;
-
-      font-size: 32px;
-    }
-
-    .fan-price-title {
+      width: auto;
+      min-width: clamp(240px,17vw,320px);
       margin: 0;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.08;
+      padding: 10px 26px;
+      border-radius: 10px;
     }
 
-    .fan-price-subtitle {
-      margin: 8px 0 22px;
-
-      font-family: Anton, Arial, sans-serif;
-      font-size: clamp(20px, 2.5vw, 32px);
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-
-    .fan-price-section .stock-bar {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto 26px;
-    }
-
-    .fan-price-section .amazon-btn {
-      margin: 0 auto;
-      max-width: 100%;
-    }
-
-    .fan-price-section .amazon-btn .offer {
-      text-align: center;
+    .tmm-v2-buy-btn--inline .tmm-v2-buy-btn__label {
       white-space: nowrap;
     }
 
+    .tmm-v2-buy-btn--inline .tmm-v2-buy-btn__logo {
+      font-size: 34px;
+      padding-bottom: 7px;
+    }
+
     @media (max-width: 768px) {
-      .fan-price-section {
-        min-height: 340px;
-        padding: 48px 0;
+      .tmm-v2-mid-cta {
+        padding: 28px 0;
       }
 
-      .fan-price-icon {
-        width: 64px;
-        height: 64px;
-        margin-bottom: 18px;
+      .tmm-v2-mid-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+
+      .tmm-v2-mid-copy {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .tmm-v2-mid-copy strong {
+        font-size: 21px;
+      }
+
+      .tmm-v2-mid-copy p {
+        font-size: 12px;
+      }
+
+      .tmm-v2-stock-bar {
+        max-width: none;
+        height: 22px;
+      }
+
+      .tmm-v2-buy-btn--inline {
+        width: 100%;
+        min-width: 0;
+        flex-direction: column;
+        gap: 3px;
+        padding: 8px 16px 10px;
+      }
+
+      .tmm-v2-buy-btn--inline .tmm-v2-buy-btn__label {
+        font-size: 11px;
+      }
+
+      .tmm-v2-buy-btn--inline .tmm-v2-buy-btn__logo {
         font-size: 28px;
       }
-
-      .fan-price-title {
-        font-size: clamp(28px, 7.5vw, 36px);
-      }
-
-      .fan-price-subtitle {
-        font-size: clamp(18px, 5vw, 24px);
-      }
-
-      .fan-price-section .stock-bar {
-        margin-bottom: 22px;
-      }
-
-      .fan-price-section .amazon-btn .amazon,
-      .fan-price-section .amazon-btn .offer {
-        padding: 13px 16px;
-        font-size: 12px;
-      }
     }
-    /* =========================================
-      MOBILE HERO — TARGET LAYOUT
-      ========================================= */
+    /* TMM V2 — STICKY AMAZON CTA */
+    .tmm-v2-sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform .35s ease, visibility 0s linear .35s;
+      background: #141414;
+      border-top: 2px solid #F7941D;
+      box-shadow: 0 -10px 30px rgba(0,0,0,.4);
+    }
 
-    /* Hero top row */
+    .tmm-v2-sticky.is-visible {
+      transform: translateY(0);
+      visibility: visible;
+      transition: transform .35s ease, visibility 0s;
+    }
 
-    .hero-topbar {
+    .tmm-v2-sticky__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 7vw;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 18px;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    .hero-topbar .badge {
-      flex: 0 0 auto;
-      margin: 0;
+    .tmm-v2-sticky__left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
     }
 
-    .hero-mini-cta {
-      flex: 0 0 auto;
-      align-items: stretch;
+    .tmm-v2-sticky__badge {
+      flex-shrink: 0;
+      background: #F7941D;
+      color: #1A1A1A;
+      font-weight: 800;
+      font-size: 18px;
+      padding: 6px 14px;
+      border-radius: 999px;
     }
 
-    .hero-mini-cta .amazon,
-    .hero-mini-cta .offer {
-      padding: 10px 12px;
-      font-size: 11px;
+    .tmm-v2-sticky__copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tmm-v2-sticky__title {
+      font-family: Anton, Arial, sans-serif;
+      font-size: 20px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .tmm-v2-sticky__progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .tmm-v2-sticky__progress b {
+      color: #F7941D;
+    }
+
+    .tmm-v2-sticky__progress span {
       white-space: nowrap;
     }
 
-    /* Price card desktop layout */
-
-    .hero .price-card {
-      display: block;
-      width: min(420px, 100%);
-      padding: 0;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
+    .tmm-v2-sticky__bar {
+      width: 140px;
+      height: 7px;
+      background: #2E2E2E;
+      border-radius: 999px;
+      overflow: hidden;
     }
 
-    .hero .price-card-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-
-      padding: 16px 20px;
-
-      background: var(--panel-2);
-      border: 3px solid var(--orange);
-      border-radius: 12px;
-      box-shadow: 5px 5px 0 #000;
+    .tmm-v2-sticky__bar div {
+      width: 49.4%;
+      height: 100%;
+      background: linear-gradient(90deg,#FFE066,#FF5A1F);
     }
 
-    .hero .price-card .stock {
-      width: min(420px, 100%);
-      margin-top: 18px;
+    .tmm-v2-sticky .tmm-v2-buy-btn--inline {
+      flex-shrink: 0;
     }
-
-    .hero .price-card .stock-label {
-      color: #1A1A1A;
-    }
-
-    .hero .price-card .stock-bar {
-      width: 100%;
-    }
-
-    /* Mobile layout */
 
     @media (max-width: 768px) {
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-inner {
-        min-height: auto;
-        padding-bottom: 28px;
-      }
-
-      .hero {
-        overflow: hidden;
-      }
-
-      .hero .wrap {
-        width: calc(100% - 56px);
-      }
-
-      .hero-inner {
-        padding: 35px 0 34px;
-        align-items: flex-start;
-      }
-
-      .hero-copy {
-        position: relative;
-        z-index: 2;
+      .tmm-v2-sticky__inner {
         width: 100%;
-        padding: 0;
+        padding: 9px 12px;
+        display: grid;
+        grid-template-columns: minmax(0,1fr) 140px;
+        gap: 10px;
+        box-sizing: border-box;
       }
 
-      /* Badge + small Amazon button */
-
-      .hero-topbar {
+      .tmm-v2-sticky__left {
         gap: 8px;
-        margin-bottom: 12px;
-        flex-wrap: nowrap;
       }
 
-      .hero-topbar .badge {
-        padding: 7px 9px;
+      .tmm-v2-sticky__badge {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+
+      .tmm-v2-sticky__title {
+        font-size: 13px;
+      }
+
+      .tmm-v2-sticky__progress {
         font-size: 10px;
-        letter-spacing: 0.6px;
-      }
-
-      .hero-mini-cta {
-        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
-      }
-
-      .hero-mini-cta .amazon,
-      .hero-mini-cta .offer {
-        padding: 8px 9px;
-        font-size: 10px;
-      }
-
-      /* Heading */
-
-      .hero h1 {
-        position: relative;
-        z-index: 2;
-
-        width: 100%;
-        max-width: 350px;
-        margin: 0;
-
-        font-size: clamp(31px, 8.2vw, 35px);
-        line-height: 1;
-        letter-spacing: -0.35px;
-      }
-
-      .hero h1 .x {
-        margin-right: 2px;
-      }
-
-      .desktop-hero-break {
-        display: none;
-      }
-
-      /* Product image on the right */
-
-      .hero-product {
-        position: absolute;
-
-        top: 220px;
-        right: 0;
-        bottom: auto;
-
-        width: 180px;
-        max-width: none;
-        max-height: none;
-        height: auto;
-
-        transform: none;
-
-        z-index: 1;
-        opacity: 1;
-
-        object-fit: contain;
-        pointer-events: none;
-      }
-
-      .hero-shade {
-        z-index: 0;
-      }
-
-      /* Benefit list */
-
-      .hero .hero-points {
-        position: relative;
-        z-index: 2;
-
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        width: 225px;
-        max-width: 100%;
-
-        margin: 14px 0 18px;
-      }
-
-      .hero .hero-point {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        font-size: 11px;
-        line-height: 1.25;
-      }
-
-      .hero .hero-point i {
-        flex: 0 0 22px;
-        width: 22px;
-        height: 22px;
-        font-size: 10px;
-      }
-
-      /* Fan price card */
-
-      .hero .price-card {
-        position: relative;
-        z-index: 3;
-
-        display: block;
-
-        width: 200px;
-        max-width: 100%;
-
-        padding: 0;
-
-        background: var(--panel-2);
-        border: 3px solid var(--orange);
-        border-radius: 12px;
-
-        box-shadow: 4px 5px 0 #000;
-      }
-
-      .hero .price-card-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-
-        padding: 10px 11px;
-
-        background: transparent;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .hero .price-label {
-        flex: 1;
-        font-size: 10px;
-        letter-spacing: 1px;
-      }
-
-      .hero .discount {
-        flex: 0 0 auto;
-
-        padding: 6px 9px;
-        margin: 0;
-
-        font-size: 15px;
-        white-space: nowrap;
-      }
-
-      /* Stock indicator inside the card */
-
-      .hero .price-card .stock {
-        width: auto;
-        max-width: none;
-        margin: 0;
-
-        padding: 10px 11px 11px;
-
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      .hero .price-card .stock-label {
-        max-width: 170px;
-        margin: 0 0 8px;
-
-        color: var(--muted);
-        font-size: 10px;
-        line-height: 1.3;
-      }
-
-      .hero .price-card .stock-bar {
-        width: 100%;
-        height: 20px;
-      }
-
-      .hero .price-card .stock-bar span {
-        font-size: 10px;
-      }
-
-      /* Main Amazon button */
-
-      .hero-cta {
-        position: relative;
-        z-index: 3;
-
-        margin-top: 18px;
-      }
-
-      .hero-cta .amazon-btn {
-        display: inline-flex;
-        max-width: 100%;
-      }
-
-      .hero-cta .amazon-btn .amazon,
-      .hero-cta .amazon-btn .offer {
-        padding: 13px 16px;
-        font-size: 12px;
-        white-space: nowrap;
-      }
-    }
-
-    /* Small mobile screens */
-
-    @media (max-width: 390px) {
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-inner {
-        min-height: auto;
-        padding-bottom: 28px;
-      }
-
-      .hero .wrap {
-        width: calc(100% - 40px);
-      }
-
-      .hero-topbar {
         gap: 6px;
       }
 
-      .hero-topbar .badge {
-        padding: 7px 7px;
-        font-size: 9px;
+      .tmm-v2-sticky__bar {
+        width: 54px;
+        flex-shrink: 0;
       }
 
-      .hero-mini-cta .amazon,
-      .hero-mini-cta .offer {
-        padding: 8px 7px;
-        font-size: 9px;
+      .tmm-v2-sticky .tmm-v2-buy-btn--inline {
+        width: 100%;
+        min-width: 0;
+        flex-direction: column;
+        gap: 3px;
+        padding: 7px 4px;
       }
 
-      .hero-product {
-        top: 220px;
-        right: 0;
-        width: 160px;
+      .tmm-v2-sticky .tmm-v2-buy-btn__label {
+        font-size: 8px;
       }
 
-      .hero h1 {
-        font-size: 31px;
-      }
-
-      .hero .price-card {
-        width: 200px;
+      .tmm-v2-sticky .tmm-v2-buy-btn__logo {
+        font-size: 22px;
+        padding-bottom: 5px;
       }
     }
-    /* HERO TITLE — MOBILE LINE BREAKS */
-
-    /* Desktop: preserve original title layout */
-    .hero-x-mobile {
-      display: none;
+    /* TMM V2 — FINAL CTA */
+    .tmm-v2-final-cta {
+      padding: 72px 7vw;
+      background:
+        radial-gradient(
+          ellipse 60% 70% at 50% 40%,
+          rgba(247,148,29,.16),
+          transparent 70%
+        ),
+        #1A1A1A;
+      border-top: 1px solid rgba(247,148,29,.2);
+      border-bottom: 1px solid rgba(247,148,29,.2);
     }
 
-    .hero-x-desktop {
-      display: inline-block;
+    .tmm-v2-final-cta__inner {
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
     }
 
+    .tmm-v2-final-cta__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      background: rgba(247,148,29,.1);
+      box-shadow:
+        inset 0 0 0 1px rgba(247,148,29,.35),
+        0 0 40px rgba(247,148,29,.2);
+    }
+
+    .tmm-v2-final-cta h2 {
+      font-size: clamp(28px,4vw,48px);
+      line-height: 1.1;
+      margin: 12px 0;
+      color: #fff;
+    }
+
+    .tmm-v2-final-cta h2 span {
+      display: block;
+      font-size: .72em;
+    }
+
+    .tmm-v2-final-cta__stock {
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .tmm-v2-final-cta .tmm-v2-stock-bar {
+      height: 26px;
+    }
+
+    .tmm-v2-final-cta .tmm-v2-stock-fill {
+      background: linear-gradient(90deg,#F7941D,#FF5A1F);
+    }
+
+    .tmm-v2-final-cta .tmm-v2-stock-bar b {
+      color: #fff;
+    }
+
+    /* TMM V2 — NEWSLETTER */
+    .tmm-v2-newsletter {
+      padding: 52px 7vw;
+      background:
+        radial-gradient(
+          ellipse 50% 120% at 0% 50%,
+          rgba(247,148,29,.14),
+          transparent 70%
+        ),
+        #1E1E1E;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-top: 1px solid rgba(247,148,29,.25);
+    }
+
+    .tmm-v2-newsletter__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .tmm-v2-newsletter__copy {
+      flex: 1 1 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tmm-v2-newsletter__copy h2 {
+      font-family: Anton, Arial, sans-serif;
+      font-size: clamp(28px,3.2vw,40px);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+    }
+
+    .tmm-v2-newsletter__copy h2 span {
+      color: #F7941D;
+      text-shadow: 0 0 24px rgba(247,148,29,.45);
+    }
+
+    .tmm-v2-newsletter__copy p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #fff;
+      opacity: .65;
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .tmm-v2-newsletter__form {
+      flex: 0 1 460px;
+      min-width: 0;
+    }
+
+    .tmm-v2-newsletter .email-form {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      display: flex;
+      gap: 8px;
+      padding: 6px;
+      background: #141414;
+      border-radius: 999px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.1);
+      box-sizing: border-box;
+    }
+
+    .tmm-v2-newsletter .email-form input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 18px;
+      border: none;
+      outline: none;
+      border-radius: 999px;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .tmm-v2-newsletter .email-form button {
+      flex-shrink: 0;
+      border: none;
+      background: #F7941D;
+      color: #1A1A1A;
+      padding: 12px 22px;
+      border-radius: 999px;
+      box-shadow: none;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tmm-v2-newsletter .fine {
+      color: #fff;
+      opacity: .55;
+      line-height: 1.5;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .tmm-v2-newsletter .success,
+    .tmm-v2-newsletter .error {
+      margin-top: 12px;
+    }
+
+    /* MOBILE FINAL SECTIONS */
     @media (max-width: 768px) {
-
-      /* First line: TAKE MY MUFFIN X */
-      .hero-line-1 {
-        display: block;
+      .tmm-v2-final-cta {
+        padding: 48px 20px;
       }
 
-      /* Second line: RAW GRAVITY */
-      .hero-line-2 {
-        display: block;
+      .tmm-v2-final-cta h2 {
+        font-size: 30px;
       }
 
-      /* Third line: PRESENTS RAW COFFEE+ */
-      .hero-line-3,
-      .hero-line-4 {
-        display: inline;
+      .tmm-v2-final-cta h2 span {
+        font-size: .78em;
       }
 
-      /* Remove unnecessary generated spaces after block lines */
-      .hero-line-1::after,
-      .hero-line-2::after {
-        content: none;
+      .tmm-v2-final-cta .tmm-v2-buy-btn {
+        width: 100%;
+        max-width: 340px;
       }
 
-      /* Keep a space between PRESENTS and RAW COFFEE+ */
-      .hero-line-3::after {
-        content: " ";
+      .tmm-v2-newsletter {
+        padding: 40px 20px;
       }
 
-      /* Move X to the first line on mobile */
-      .hero-x-mobile {
-        display: inline-block;
+      .tmm-v2-newsletter__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 22px;
       }
 
-      .hero-x-desktop {
+      .tmm-v2-newsletter__copy,
+      .tmm-v2-newsletter__form {
+        width: 100%;
+        max-width: none;
+        flex: 0 0 auto;
+      }
+
+      .tmm-v2-newsletter__copy h2 {
+        font-size: 28px;
+      }
+
+      .tmm-v2-newsletter__copy p {
+        font-size: 13px;
+      }
+
+      .tmm-v2-newsletter .email-form {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .tmm-v2-newsletter .email-form input {
+        width: 100%;
+        min-height: 48px;
+        box-sizing: border-box;
+        background: #141414;
+        border: 1px solid rgba(255,255,255,.15);
+      }
+
+      .tmm-v2-newsletter .email-form button {
+        width: 100%;
+        min-height: 48px;
+      }
+    }
+    /* TMM V2 — DESKTOP HERO ALIGNMENT FIX */
+    @media (min-width: 769px) {
+      .tmm-v2-hero__inner {
+        width: min(1200px, calc(100% - 48px));
+        max-width: 1200px;
+        min-height: calc(100vh - 36px);
+        padding: 48px 30px 48px 70px;
+        box-sizing: border-box;
+        grid-template-columns: minmax(520px, 540px) minmax(0, 1fr);
+        gap: 32px;
+      }
+
+      .tmm-v2-hero__copy {
+        width: 100%;
+        max-width: 540px;
+        transform: translateY(0);
+      }
+
+      .tmm-v2-hero__title {
+        max-width: 560px;
+        font-size: clamp(56px, 4vw, 64px);
+        line-height: 1.02;
+      }
+
+      .tmm-v2-hero__offer {
+        width: 100%;
+        max-width: 460px;
+        margin-top: 36px;
+      }
+
+      .tmm-v2-hero__trust {
+        width: 100%;
+        max-width: 460px;
+      }
+
+      .tmm-v2-hero__art {
+        right: 80px;
+        width: min(70vw, 1260px);
+        max-width: none;
+      }
+    }
+    /* TMM V2 — STICKY BAR WIDTH FIX */
+    .tmm-v2-sticky__inner {
+      width: min(1200px, calc(100% - 48px));
+      max-width: none;
+      margin: 0 auto;
+      padding: 12px 0;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .tmm-v2-sticky .tmm-v2-buy-btn--inline {
+      width: 294px;
+      min-width: 294px;
+      flex: 0 0 294px;
+    }
+
+    /* Keep the existing compact mobile layout */
+    @media (max-width: 768px) {
+      .tmm-v2-sticky__inner {
+        width: 100%;
+        max-width: none;
+        padding: 9px 12px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 140px;
+        gap: 10px;
+      }
+
+      .tmm-v2-sticky .tmm-v2-buy-btn--inline {
+        width: 100%;
+        min-width: 0;
+        flex: initial;
+      }
+    }
+    /* FINAL FIX — DESKTOP HERO */
+    @media (min-width: 769px) {
+      .tmm-v2-hero {
+        height: min(860px, calc(100svh - 36px));
+        min-height: 0;
+      }
+
+      .tmm-v2-hero__inner {
+        height: 100%;
+        min-height: 0;
+        width: min(1200px, calc(100% - 48px));
+        padding: 32px 30px 32px 70px;
+        box-sizing: border-box;
+        grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
+      }
+
+      .tmm-v2-hero__copy {
+        width: 100%;
+        max-width: 600px;
+        transform: none;
+      }
+
+      .tmm-v2-hero__title {
+        max-width: 600px;
+        font-family: 'Lilita One', Arial, sans-serif;
+        font-size: clamp(50px, 4.1vw, 64px);
+        line-height: 1.02;
+        letter-spacing: .8px;
+      }
+
+      .tmm-v2-hero__sticker {
+        font-family: 'Permanent Marker', cursive;
+      }
+
+      .tmm-v2-hero__art {
+        top: 50%;
+        right: min(11vw, 230px);
+        width: min(65vw, 1300px);
+        aspect-ratio: 1397 / 1126;
+        transform: translateY(-50%);
+        background-size: cover;
+        background-position: center;
+      }
+    }
+    /* FINAL FIX — MOBILE HERO */
+    @media (max-width: 768px) {
+      .tmm-v2-hero {
+        height: auto;
+        min-height: 0;
+      }
+
+      .tmm-v2-hero__inner {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        height: calc(100svh - 132px);
+        min-height: 460px;
+        padding: 10px 20px 14px;
+        box-sizing: border-box;
+      }
+
+      .tmm-v2-hero__inner > div[aria-hidden="true"] {
         display: none;
+      }
+
+      .tmm-v2-hero__copy {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        height: 100%;
+        transform: none;
+      }
+
+      .tmm-v2-hero__title {
+        max-width: 380px;
+        font-family: 'Lilita One', Arial, sans-serif;
+        font-size: clamp(26px, 4.8dvh, 36px);
+        line-height: 1.08;
+        letter-spacing: .6px;
+        -webkit-text-stroke: 5px #1A1A1A;
+      }
+
+      .tmm-v2-hero__presents {
+        font-family: 'Manrope', Arial, sans-serif;
+      }
+
+      .tmm-v2-hero__sticker {
+        margin-top: 10px;
+        margin-left: 12px;
+        font-family: 'Permanent Marker', cursive;
+        font-size: clamp(17px, 2.9dvh, 22px);
+      }
+
+      .tmm-v2-hero__art {
+        left: 0;
+        right: -20px;
+        top: 165px;
+        bottom: 150px;
+        width: auto;
+        height: auto;
+        aspect-ratio: auto;
+        transform: translateY(-100px);
+        background-position: right top;
+        background-size: cover;
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          transparent 0%,
+          #000 14%,
+          #000 86%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          180deg,
+          transparent 0%,
+          #000 14%,
+          #000 86%,
+          transparent 100%
+        );
+      }
+
+      .tmm-v2-hero__offer {
+        margin-top: auto;
+        padding-top: clamp(8px, 1.4dvh, 14px);
+        gap: 8px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .tmm-v2-hero__stock-label {
+        font-size: 11px;
+      }
+
+      .tmm-v2-hero__trust {
+        position: relative;
+        z-index: 3;
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      .tmm-v2-hero__trust-item {
+        font-size: 10px;
+      }
+    }
+    /* MARQUEE — BLACK BACKGROUND */
+    header.marquee {
+      background: #1A1A1A !important;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    header.marquee .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+      will-change: transform;
+    }
+
+    header.marquee .marquee-group {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+
+    /* FINAL FIX — MOBILE MID CTA */
+    @media (max-width: 768px) {
+      .tmm-v2-mid-cta {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 28px 0 !important;
+      }
+
+      .tmm-v2-mid-inner {
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start !important;
+        align-items: stretch;
+        align-content: flex-start;
+        gap: 18px;
+      }
+
+      .tmm-v2-mid-copy {
+        flex: 0 0 auto !important;
+        min-height: 0;
+      }
+
+      .tmm-v2-mid-cta .tmm-v2-buy-btn--inline {
+        flex: 0 0 auto !important;
+        align-self: stretch;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
       }
     }
   </style>
@@ -1519,7 +1950,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <header class="marquee">
+  <header class="marquee" aria-label="Limited collaboration offer">
     <div class="marquee-track">
 
       <div class="marquee-group">
@@ -1527,31 +1958,9 @@
         <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
         <span>LIMITED COLLAB EDITION</span>
         <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
       </div>
 
       <div class="marquee-group" aria-hidden="true">
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-      </div>
-
-      <div class="marquee-group" aria-hidden="true">
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
-      </div>
-
-      <div class="marquee-group" aria-hidden="true">
-        <span>LIMITED COLLAB EDITION</span>
-        <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
         <span>LIMITED COLLAB EDITION</span>
         <span>FAN PRICE FOR THE FIRST 500 ORDERS ONLY</span>
         <span>LIMITED COLLAB EDITION</span>
@@ -1562,102 +1971,83 @@
   </header>
 
   <main>
-    <section class="hero" id="top">
-      <div class="hero-art hero-art-desktop" aria-hidden="true"></div>
-      <div class="hero-shade" aria-hidden="true"></div>
+    <section class="tmm-v2-hero" id="top">
 
-      <img
-        class="hero-product"
-        src="./assets/coffee-bag-nobg.png"
-        alt="Raw Coffee+ product bag"
-        fetchpriority="high"
-      >
+      <div class="tmm-v2-hero__art" aria-hidden="true"></div>
 
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
+      <div class="tmm-v2-hero__inner">
 
-          <div class="hero-topbar">
+        <div class="tmm-v2-hero__copy">
 
-            <div class="badge">EXCLUSIVE EDITION</div>
-
-            <a
-              class="amazon-btn hero-mini-cta"
-              href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_F4C7C5F67E362A895EFCE264B192DFE0_afap_abs&amp;ref_=aa_maas&amp;tag=maas"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="amazon">amazon</span>
-              <span class="offer">Try Raw Coffee+</span>
-            </a>
-
-          </div>
-
-          <h1>
-            <span class="hero-line-1">
-              Take My Muffin <span class="x hero-x-mobile">x</span>
-            </span><br class="desktop-hero-break">
-
-            <span class="hero-line-2">Raw Gravity
-            </span><br class="desktop-hero-break">
-
-            <span class="hero-line-3">presents</span><br class="desktop-hero-break">
-
-            <span class="hero-line-4">raw coffee+</span>
+          <h1 class="tmm-v2-hero__title">
+            Raw Gravity <span class="tmm-v2-hero__x">x</span><br>
+            Take My Muffin<br>
+            <span class="tmm-v2-hero__presents">presents</span><br>
+            <span class="tmm-v2-hero__coffee">raw coffee+</span>
           </h1>
 
-          <div class="hero-points">
-            <div class="hero-point">
-              <i>⭐</i>
-              <span>Limited edition packaging</span>
-            </div>
-
-            <div class="hero-point">
-              <i>❤️</i>
-              <span>Built for the fans who never log off</span>
-            </div>
-
-            <div class="hero-point">
-              <i>⚡</i>
-              <span>Get it before the restock</span>
-            </div>
+          <div class="tmm-v2-hero__sticker">
+            <span>Fan price</span>
+            <strong>25% off</strong>
           </div>
 
-          <div class="price-card">
+          <div class="tmm-v2-hero__offer">
 
-            <div class="price-card-top">
-              <div class="price-label">FAN PRICE</div>
-              <div class="discount">-25% OFF</div>
+            <div class="tmm-v2-hero__stock-label">
+              <span>−25% with Subscribe &amp; Save, first 500 orders</span>
+              <strong>247 <small>/ 500</small></strong>
             </div>
 
-            <div class="stock">
-              <div class="stock-label">
-                First 500 orders get the fan price
-              </div>
-
-              <div class="stock-bar">
-                <div class="stock-fill"></div>
-                <span><b>247</b> <em>/ 500</em></span>
-              </div>
+            <div class="tmm-v2-hero__stock-bar">
+              <div class="tmm-v2-hero__stock-fill"></div>
             </div>
 
-          </div>
-
-          <div class="hero-cta">
             <a
-              class="amazon-btn"
+              href="#"
               id="cta-hero-get-25-off"
-              href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_F4C7C5F67E362A895EFCE264B192DFE0_afap_abs&amp;ref_=aa_maas&amp;tag=maas"
+              class="tmm-v2-buy-btn"
+              data-amazon-cta
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span class="amazon">amazon</span>
-              <span class="offer">Try Raw Coffee+</span>
+              <span class="tmm-v2-buy-btn__label">CLICK &amp; BUY ON</span>
+              <span class="tmm-v2-buy-btn__logo">
+                amazon
+                <i aria-hidden="true"></i>
+              </span>
             </a>
+
+          </div>
+
+          <div class="tmm-v2-hero__trust">
+
+            <div class="tmm-v2-hero__trust-item">
+              <span class="tmm-v2-hero__trust-icon">♢</span>
+              <span>Amazon Buyer Protection</span>
+            </div>
+
+            <div class="tmm-v2-hero__trust-item">
+              <span class="tmm-v2-hero__trust-icon">▤</span>
+              <span>Made in USA</span>
+            </div>
+
+            <div class="tmm-v2-hero__trust-item">
+              <span class="tmm-v2-hero__trust-icon">♧</span>
+              <span>Non-GMO</span>
+            </div>
+
+            <div class="tmm-v2-hero__trust-item">
+              <span class="tmm-v2-hero__trust-icon">♧</span>
+              <span>Vegan Friendly</span>
+            </div>
+
           </div>
 
         </div>
-      </div>
 
+        <div aria-hidden="true"></div>
+
+      </div>
     </section>
 
     <section class="section-panel">
@@ -1720,21 +2110,34 @@
       </div>
     </section>
 
-    <section class="mid-cta">
-      <div class="wrap mid-inner">
-        <div class="mid-copy">
-          <strong>Your fan price is still available.</strong>
-          <p><b>-25% off for the first 500 orders only</b></p>
-          <div class="stock-bar" style="max-width:320px">
-            <div class="stock-fill"></div>
-            <span>247 / 500</span>
+    <section class="tmm-v2-mid-cta">
+      <div class="wrap tmm-v2-mid-inner">
+
+        <div class="tmm-v2-mid-copy">
+          <strong>YOUR FAN PRICE IS STILL AVAILABLE</strong>
+          <p>25% off for the first 500 orders only</p>
+
+          <div class="tmm-v2-stock-bar">
+            <div class="tmm-v2-stock-fill"></div>
+            <span><b>247</b><em>/ 500</em></span>
           </div>
         </div>
 
-        <a class="amazon-btn" id="cta-offer-get-25-off" href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas">
-          <span class="amazon">amazon</span>
-          <span class="offer">Try Raw Coffee+</span>
+        <a
+          class="tmm-v2-buy-btn tmm-v2-buy-btn--inline"
+          id="cta-offer-get-25-off"
+          href="#"
+          data-amazon-cta
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="tmm-v2-buy-btn__label">CLICK &amp; BUY ON</span>
+          <span class="tmm-v2-buy-btn__logo">
+            amazon
+            <i aria-hidden="true"></i>
+          </span>
         </a>
+
       </div>
     </section>
 
@@ -1801,62 +2204,61 @@
         </div>
       </div>
     </section>
-    <section class="fan-price-section" aria-labelledby="fan-price-heading">
 
-      <div class="fan-price-inner">
+    <section class="tmm-v2-final-cta" id="fan-price-form-section">
 
-        <div class="fan-price-icon" aria-hidden="true">
-          📬
-        </div>
+      <div class="tmm-v2-final-cta__inner">
 
-        <h2 class="fan-price-title" id="fan-price-heading">
+        <div class="tmm-v2-final-cta__icon">📬</div>
+
+        <h2>
           Your fan price is waiting
+          <span>get the raw coffee with -25% off</span>
         </h2>
 
-        <p class="fan-price-subtitle">
-          Get the Raw Coffee with -25% off
-        </p>
-
-        <div
-          class="stock-bar"
-          role="img"
-          aria-label="247 of 500 orders"
-        >
-          <div class="stock-fill"></div>
-          <span><b>247</b> / 500</span>
+        <div class="tmm-v2-final-cta__stock">
+          <div class="tmm-v2-stock-bar">
+            <div class="tmm-v2-stock-fill"></div>
+            <span><b>247</b><em>/ 500</em></span>
+          </div>
         </div>
 
         <a
-          class="amazon-btn"
-          id="cta-fan-price-attribution"
-          href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_F4C7C5F67E362A895EFCE264B192DFE0_afap_abs&amp;ref_=aa_maas&amp;tag=maas"
+          href="#"
+          id="cta-final-buy"
+          class="tmm-v2-buy-btn"
+          data-amazon-cta
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span class="amazon">amazon</span>
-          <span class="offer">Try Raw Coffee now with -25%</span>
+          <span class="tmm-v2-buy-btn__label">CLICK &amp; BUY ON</span>
+          <span class="tmm-v2-buy-btn__logo">
+            amazon
+            <i aria-hidden="true"></i>
+          </span>
         </a>
 
       </div>
 
     </section>
-    <section class="email-section community-section" id="fan-price-form-section">
-      <div class="wrap community-inner">
 
-        <div class="community-copy">
-          <p class="community-eyebrow">RAW GRAVITY COMMUNITY</p>
 
+    <section class="tmm-v2-newsletter" id="community-signup">
+
+      <div class="tmm-v2-newsletter__inner">
+
+        <div class="tmm-v2-newsletter__copy">
           <h2>
-            Join the <span>RAW GRAVITY</span> community
+            Join the <span>Raw Gravity</span> community
           </h2>
 
-          <p class="community-description">
-            Get first access to launches, discounts, promos, and community updates.
-            Be part of the Raw Gravity community.
+          <p>
+            Leave your email to be the first to hear about discounts,
+            promos and cool events from Raw Gravity.
           </p>
         </div>
 
-        <div class="community-form-wrap">
+        <div class="tmm-v2-newsletter__form">
 
           <form
             class="email-form"
@@ -1871,39 +2273,31 @@
               required
               autocomplete="email"
               placeholder="you@example.com"
-              aria-label="Email address"
+              aria-label="Email"
             >
 
             <button id="fan-price-email-submit" type="submit">
-              Join the community
+              Subscribe
             </button>
           </form>
 
-          <div
-            class="success"
-            id="success-state"
-            role="status"
-            aria-live="polite"
-          >
-            You're in! Welcome to the Raw Gravity community.
+          <div class="success" id="success-state">
+            You're in! Watch your inbox.
           </div>
 
-          <div
-            class="error"
-            id="error-state"
-            role="alert"
-          >
+          <div class="error" id="error-state">
             Something went wrong. Please try again.
           </div>
 
           <div class="fine">
-            By subscribing, you agree to receive emails from Raw Gravity.
+            By submitting you agree to receive emails from Raw Gravity.
             Unsubscribe anytime.
           </div>
 
         </div>
 
       </div>
+
     </section>
 
     <footer class="footer">
@@ -1915,9 +2309,9 @@
             <a class="privacy" href="#">Privacy Policy</a>
           </div>
 
-          <a class="amazon-btn" id="cta-bottom-get-25-off" href="https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas">
+          <a class="amazon-btn" id="cta-bottom-get-25-off" href="#fan-price-form-section">
             <span class="amazon">amazon</span>
-            <span class="offer">Try Raw Coffee+</span>
+            <span class="offer">Get -25% off</span>
           </a>
         </div>
 
@@ -1936,90 +2330,151 @@
         </div>
       </div>
     </footer>
+    <div class="tmm-v2-sticky" id="sticky-amazon-cta" aria-hidden="true">
+
+      <div class="tmm-v2-sticky__inner">
+
+        <div class="tmm-v2-sticky__left">
+          <span class="tmm-v2-sticky__badge">25% OFF</span>
+
+          <div class="tmm-v2-sticky__copy">
+            <div class="tmm-v2-sticky__title">Raw Coffee+ fan price</div>
+
+            <div class="tmm-v2-sticky__progress">
+              <div class="tmm-v2-sticky__bar">
+                <div></div>
+              </div>
+
+              <span><b>247</b> / 500 claimed</span>
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="tmm-v2-buy-btn tmm-v2-buy-btn--inline"
+          href="#"
+          data-amazon-cta
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="tmm-v2-buy-btn__label">CLICK &amp; BUY ON</span>
+          <span class="tmm-v2-buy-btn__logo">
+            amazon
+            <i aria-hidden="true"></i>
+          </span>
+        </a>
+
+      </div>
+    </div>
   </main>
 
   <script>
-  const LANDING_NAME = "tmm2c2";
+    const LANDING_NAME = "tmm2c2";
 
-  const form = document.getElementById("fan-price-email-form");
-  const emailInput = document.getElementById("fan-price-email");
-  const submitButton = document.getElementById("fan-price-email-submit");
-  const successState = document.getElementById("success-state");
-  const errorState = document.getElementById("error-state");
+    const AMAZON_URLS = {
+      tiktok: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas",
+      meta: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas",
+      google: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas",
+      dv360: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas",
+      youtube: "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas"
+    };
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    const DEFAULT_AMAZON_URL = "https://www.amazon.com/dp/B0GTWJ3K1R?maas=maas_adg_799ABB226F6E59DBE055DECE8147C7A5_afap_abs&ref_=aa_maas&tag=maas";
+    const initialParams = new URLSearchParams(window.location.search);
+    const initialSource = (initialParams.get("source") || "meta").toLowerCase();
 
-    const email = emailInput.value.trim();
+    const selectedAmazonUrl =
+      AMAZON_URLS[initialSource] || DEFAULT_AMAZON_URL;
 
-    if (!email) {
-      return;
-    }
+    document.querySelectorAll("[data-amazon-cta]").forEach((link) => {
+      link.href = selectedAmazonUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+    const form = document.getElementById("fan-price-email-form");
+    const emailInput = document.getElementById("fan-price-email");
+    const submitButton = document.getElementById("fan-price-email-submit");
+    const successState = document.getElementById("success-state");
+    const errorState = document.getElementById("error-state");
 
-    const params = new URLSearchParams(window.location.search);
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-    const sourceRaw = (params.get("source") || "unknown")
-      .trim()
-      .toLowerCase();
+      const email = emailInput.value.trim();
+      if (!email) return;
 
-    const allowedSources = [
-      "tiktok",
-      "meta",
-      "google",
-      "youtube",
-      "dv360"
-    ];
-
-    const source = allowedSources.includes(sourceRaw)
+      const params = new URLSearchParams(window.location.search);
+      const sourceRaw = (params.get("source") || "meta").toLowerCase();
+      const source = ["tiktok","meta","google","youtube","dv360"].includes(sourceRaw)
       ? sourceRaw
       : "unknown";
+      const creative = params.get("creative") || "unknown";
 
-    const creative = params.get("creative") || "unknown";
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+      errorState.style.display = "none";
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Joining...";
-    errorState.style.display = "none";
+      try {
+        const response = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({
+            email,
+            landing: LANDING_NAME,
+            source,
+            creative
+          })
+        });
 
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          landing: LANDING_NAME,
-          source,
-          creative
-        })
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Subscription failed");
+        }
+
+        form.style.display = "none";
+        successState.style.display = "block";
+        
+        if (typeof window.rawGravityTrackTikTokLead === "function") {
+          window.rawGravityTrackTikTokLead();
+        }
+        if (typeof window.rawGravityTrackMetaLead === "function") {
+          window.rawGravityTrackMetaLead();
+        }
+
+      } catch (error) {
+        console.error("TMM2 Klaviyo submission error:", error);
+        submitButton.disabled = false;
+        submitButton.textContent = "Get the 25% code";
+        errorState.style.display = "block";
+      }
+    });
+
+    document.querySelectorAll('a[href="#fan-price-form-section"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const target = document.getElementById("fan-price-form-section");
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({behavior:"smooth", block:"center"});
+          setTimeout(() => emailInput.focus(), 500);
+        }
+      });
+    });
+    const heroCta = document.getElementById("cta-hero-get-25-off");
+    const stickyCta = document.getElementById("sticky-amazon-cta");
+
+    if (heroCta && stickyCta && "IntersectionObserver" in window) {
+      const stickyObserver = new IntersectionObserver(([entry]) => {
+        const showSticky =
+          !entry.isIntersecting &&
+          entry.boundingClientRect.top < 0;
+
+        stickyCta.classList.toggle("is-visible", showSticky);
+        stickyCta.setAttribute("aria-hidden", String(!showSticky));
       });
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || "Subscription failed");
-      }
-
-      form.style.display = "none";
-      successState.style.display = "block";
-
-      if (typeof window.rawGravityTrackTikTokLead === "function") {
-        window.rawGravityTrackTikTokLead();
-      }
-
-      if (typeof window.rawGravityTrackMetaLead === "function") {
-        window.rawGravityTrackMetaLead();
-      }
-
-    } catch (error) {
-      console.error("Raw Gravity community signup error:", error);
-
-      submitButton.disabled = false;
-      submitButton.textContent = "Join the community";
-
-      errorState.style.display = "block";
+      stickyObserver.observe(heroCta);
     }
-  });
-</script>
+  </script>
 </body>
 </html>
